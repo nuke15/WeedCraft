@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.maxmushroom</groupId> <!-- Your chosen group ID -->
+    <artifactId>WeedCraft</artifactId> <!-- Your chosen artifact ID -->
+    <version>0.1.0</version> <!-- Your plugin version -->
+    <packaging>jar</packaging> <!-- We are building a JAR file -->
+
+    <name>${project.artifactId}</name>
+    <description>A Paper plugin for Minecraft ${minecraft.version}</description>
+
+    <properties>
+        <minecraft.version>1.21</minecraft.version> <!-- Minecraft version you are targeting -->
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>papermc-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <!-- Use the API version corresponding to your target Minecraft version -->
+            <version>${minecraft.version}-R0.1-SNAPSHOT</version>
+            <scope>provided</scope> <!-- Paper API is provided by the server -->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <finalName>${project.name}-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering> <!-- This enables replacing placeholders like ${project.version} in plugin.yml -->
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version> <!-- Or a newer version -->
+            </plugin>
+        </plugins>
+    </build>
+</project>

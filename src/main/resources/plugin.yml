@@ -1,0 +1,7 @@
+name: ${project.name}
+version: ${project.version}
+main: net.maxmushroom.weedcraft.WeedCraft # Replace with your main class path
+api-version: '1.21' # Specifies the server API version this plugin is designed for
+author: YourName # Optional: Your name or your organization's name
+description: ${project.description}
+website: https://example.com # Optional: Your plugin's website
