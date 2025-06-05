@@ -10,7 +10,7 @@
     <packaging>jar</packaging> <!-- We are building a JAR file -->
 
     <name>${project.artifactId}</name>
-    <description>A Paper plugin for Minecraft ${minecraft.version}</description>
+    <description>Get high in Minecraft!</description>
 
     <properties>
         <minecraft.version>1.21</minecraft.version> <!-- Minecraft version you are targeting -->

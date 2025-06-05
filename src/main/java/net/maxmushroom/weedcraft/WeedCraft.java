@@ -3,17 +3,18 @@ package net.maxmushroom.weedcraft;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class WeedCraft extends JavaPlugin {
+    public final Items items = new Items(this);
+    public final HighManager highManager = new HighManager(this);
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-        getLogger().info(getPluginMeta().getName() + " version " + getPluginMeta().getVersion() + " has been enabled!");
-        // Example: Register commands, listeners, etc.
+        getServer().getPluginManager().registerEvents(new TokeListener(this), this);
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
-        getLogger().info(getPluginMeta().getName() + " has been disabled.");
+        highManager.removeAllSmokers();
+        items.unRegister();
     }
+    
 }
