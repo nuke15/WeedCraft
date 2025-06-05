@@ -49,8 +49,6 @@ public class HighTask implements Runnable {
             return;
         }
 
-        player.sendHealthUpdate(MAX_HIGHNESS, HIGHNESS_DECAY, EFFECT_DURATION);
-
         // update boss bar
         Component name = Component.text("Highness: " + getHighness() + "%");
 

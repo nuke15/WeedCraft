@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.util.Vector;
 
 import net.kyori.adventure.text.Component;
@@ -59,5 +60,11 @@ public class TokeListener implements Listener {
             event.setCancelled(true);
             event.getPlayer().sendActionBar(Component.text("You're so high, you can't move...?").color(NamedTextColor.WHITE));
         }
+    }
+
+    // prevent offline players from having their hightask ran
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        plugin.highManager.removeSmoker(event.getPlayer());
     }
 }
