@@ -14,7 +14,7 @@ public final class WeedCraft extends JavaPlugin {
     @Override
     public void onDisable() {
         highManager.removeAllSmokers();
-        items.unRegister();
+        items.unregister();
     }
     
 }

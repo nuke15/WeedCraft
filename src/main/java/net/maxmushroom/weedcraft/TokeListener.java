@@ -28,6 +28,11 @@ public class TokeListener implements Listener {
         if (!event.getAction().equals(Action.RIGHT_CLICK_AIR) && !event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             return;
         }
+        // if player isn't holding anything
+        // prevents null comparison
+        if (event.getItem() == null) {
+            return;
+        }
         // if player isn't holding joint
         if (!event.getItem().isSimilar(plugin.items.joint)) {
             return;
@@ -39,11 +44,12 @@ public class TokeListener implements Listener {
         if (event.getPlayer().getGameMode() == GameMode.ADVENTURE || event.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             event.getItem().setAmount(event.getItem().getAmount() - 1);
         }
-        // spawn smoke
+        
+        event.getPlayer().sendMessage(Component.text("You take a drag...").color(NamedTextColor.GREEN));
         Location location = event.getPlayer().getEyeLocation();
         Vector direction = location.getDirection();
         double radius = 0.0125;
-        event.getPlayer().spawnParticle(Particle.CAMPFIRE_COSY_SMOKE, location.add(direction.multiply(0.5)), 5, radius, radius, radius, 0.0125);
+        event.getPlayer().spawnParticle(Particle.CAMPFIRE_COSY_SMOKE, location.add(direction.multiply(0.5)), 5, radius, radius, radius, 0.0025);
         plugin.highManager.addSmoker(event.getPlayer());
     }
 

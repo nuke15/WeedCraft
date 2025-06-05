@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
 
 public class HighManager {
@@ -37,6 +38,18 @@ public class HighManager {
     }
 
     public void removeSmoker(Player player) {
+        // quick exit
+        if (highTasks.get(player) == null) {
+            return;
+        }
+
+        player.removePotionEffect(PotionEffectType.SLOWNESS);
+        player.removePotionEffect(PotionEffectType.NAUSEA);
+        player.activeBossBars().forEach((bar) -> {
+            if (bar.name().toString().contains("Highness")) {
+                player.hideBossBar(bar);
+            }
+        });
         highTasks.get(player).cancel();
         highTasks.remove(player);
         highLevels.remove(player);
