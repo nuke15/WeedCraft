@@ -16,23 +16,17 @@ public class Recipes {
     private final NamespacedKey weedKey;
     private final NamespacedKey jointKey;
     private final NamespacedKey bongKey;
-    private final NamespacedKey bongPackedKey;
     private final NamespacedKey concentrateKey;
     private final NamespacedKey vapeKey;
-    private final NamespacedKey vapeFilledKey;
     private final NamespacedKey dabRigKey;
-    private final NamespacedKey dabRigLoadedKey;
 
     public Recipes(WeedCraft plugin) {
         weedKey = new NamespacedKey(plugin, "weed_recipe");
         jointKey = new NamespacedKey(plugin, "joint_recipe");
         bongKey = new NamespacedKey(plugin, "bong_recipe");
-        bongPackedKey = new NamespacedKey(plugin, "bong_packed_recipe");
         concentrateKey = new NamespacedKey(plugin, "concentrate_recipe");
         vapeKey = new NamespacedKey(plugin, "vape_recipe");
-        vapeFilledKey = new NamespacedKey(plugin, "vape_filled_recipe");
         dabRigKey = new NamespacedKey(plugin, "dab_rig_recipe");
-        dabRigLoadedKey = new NamespacedKey(plugin, "dab_rig_loaded_recipe");
 
         register(plugin);
     }
@@ -55,12 +49,6 @@ public class Recipes {
         bongRecipe.setIngredient('G', Material.GLASS);
         Bukkit.addRecipe(bongRecipe);
 
-        // recipe for packed bong
-        ShapelessRecipe bongPackedRecipe = new ShapelessRecipe(bongPackedKey, plugin.items.bongPacked);
-        bongPackedRecipe.addIngredient(plugin.items.bong);
-        bongPackedRecipe.addIngredient(plugin.items.weed);
-        Bukkit.addRecipe(bongPackedRecipe);
-
         // recipe for concentrate
         FurnaceRecipe concentrateRecipe = new FurnaceRecipe(
                 concentrateKey,
@@ -78,24 +66,11 @@ public class Recipes {
         vapeRecipe.setIngredient('I', Material.IRON_INGOT);
         Bukkit.addRecipe(vapeRecipe);
 
-        // recipe for filled vape
-        ShapelessRecipe vapeFilledRecipe = new ShapelessRecipe(vapeFilledKey, plugin.items.vapeFilled);
-        vapeFilledRecipe.addIngredient(plugin.items.concentrate);
-        vapeFilledRecipe.addIngredient(plugin.items.weed);
-        Bukkit.addRecipe(vapeFilledRecipe);
-
         // recipe for dab rig
-        ShapedRecipe dabRigRecipe = new ShapedRecipe(dabRigKey, plugin.items.dabRig);
-        dabRigRecipe.shape("GB");
-        dabRigRecipe.setIngredient('G', Material.GLASS);
-        dabRigRecipe.setIngredient('B', plugin.items.bong);
+        ShapelessRecipe dabRigRecipe = new ShapelessRecipe(dabRigKey, plugin.items.dabRig);
+        dabRigRecipe.addIngredient(Material.GLASS);
+        dabRigRecipe.addIngredient(plugin.items.bong);
         Bukkit.addRecipe(dabRigRecipe);
-
-        // recipe for loaded dab rig
-        ShapelessRecipe dabRigLoadedRecipe = new ShapelessRecipe(dabRigLoadedKey, plugin.items.dabRigLoaded);
-        dabRigLoadedRecipe.addIngredient(plugin.items.dabRig);
-        dabRigLoadedRecipe.addIngredient(plugin.items.concentrate);
-        Bukkit.addRecipe(dabRigLoadedRecipe);
 
     }
 
@@ -103,11 +78,8 @@ public class Recipes {
         Bukkit.removeRecipe(weedKey);
         Bukkit.removeRecipe(jointKey);
         Bukkit.removeRecipe(bongKey);
-        Bukkit.removeRecipe(bongPackedKey);
         Bukkit.removeRecipe(concentrateKey);
         Bukkit.removeRecipe(vapeKey);
-        Bukkit.removeRecipe(vapeFilledKey);
         Bukkit.removeRecipe(dabRigKey);
-        Bukkit.removeRecipe(dabRigLoadedKey);
     }
 }
