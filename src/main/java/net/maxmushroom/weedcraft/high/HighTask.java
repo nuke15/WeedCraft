@@ -1,4 +1,4 @@
-package net.maxmushroom.weedcraft;
+package net.maxmushroom.weedcraft.high;
 
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -9,6 +9,7 @@ import net.kyori.adventure.bossbar.BossBar.Color;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextColor;
+import net.maxmushroom.weedcraft.WeedCraft;
 
 public class HighTask implements Runnable {
     private Player player;

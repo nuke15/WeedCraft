@@ -6,6 +6,7 @@ import org.bukkit.Particle;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -13,6 +14,8 @@ import org.bukkit.util.Vector;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
+import net.maxmushroom.weedcraft.high.HighManager;
+import net.maxmushroom.weedcraft.high.HighTask;
 
 public class TokeListener implements Listener {
     WeedCraft plugin;
@@ -47,11 +50,15 @@ public class TokeListener implements Listener {
         }
         
         event.getPlayer().sendMessage(Component.text("You take a drag...").color(NamedTextColor.GREEN));
+        spawnSmoke(event, 0.125, 2);
+        plugin.highManager.addSmoker(event.getPlayer(),  HighManager.HIGHNESS_PER_JOINT);
+    }
+
+    private void spawnSmoke(PlayerEvent event, double radius, int amount) {
         Location location = event.getPlayer().getEyeLocation();
         Vector direction = location.getDirection();
-        double radius = 0.0125;
-        event.getPlayer().spawnParticle(Particle.CAMPFIRE_COSY_SMOKE, location.add(direction.multiply(0.5)), 5, radius, radius, radius, 0.0025);
-        plugin.highManager.addSmoker(event.getPlayer());
+        double distance = radius * 2;
+        event.getPlayer().spawnParticle(Particle.CAMPFIRE_COSY_SMOKE, location.add(direction.multiply(distance)), amount, radius, radius, radius, 0.0025);
     }
 
     @EventHandler
