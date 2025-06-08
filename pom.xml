@@ -6,13 +6,13 @@
 
     <groupId>net.maxmushroom</groupId>
     <artifactId>weedcraft</artifactId>
-    <version>0.1.1</version>
+    <version>0.2.0</version>
     <packaging>jar</packaging>
 
     <name>WeedCraft</name>
 
     <properties>
-        <minecraft.version>1.21</minecraft.version>
+        <minecraft.version>1.21.4</minecraft.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
