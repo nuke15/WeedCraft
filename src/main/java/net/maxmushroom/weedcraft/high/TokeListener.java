@@ -1,4 +1,4 @@
-package net.maxmushroom.weedcraft;
+package net.maxmushroom.weedcraft.high;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -14,8 +14,7 @@ import org.bukkit.util.Vector;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import net.maxmushroom.weedcraft.high.HighManager;
-import net.maxmushroom.weedcraft.high.HighTask;
+import net.maxmushroom.weedcraft.WeedCraft;
 
 public class TokeListener implements Listener {
     WeedCraft plugin;
@@ -47,7 +46,7 @@ public class TokeListener implements Listener {
             }
 
             event.getPlayer().sendMessage(Component.text("You take a drag...").color(NamedTextColor.GREEN));
-            spawnSmoke(event.getPlayer(), 0.125, 2);
+            spawnSmoke(event.getPlayer(), 0.125, 4, Particle.SMOKE);
             plugin.highManager.addSmoker(event.getPlayer(), HighManager.HIGHNESS_PER_JOINT);
 
         } else if (event.getItem().isSimilar(plugin.items.bong)) {
@@ -71,7 +70,7 @@ public class TokeListener implements Listener {
             }
 
             event.getPlayer().sendMessage(Component.text("You take a rip...").color(NamedTextColor.GREEN));
-            spawnSmoke(event.getPlayer(), 0.25, 5);
+            spawnSmoke(event.getPlayer(), 0.25, 5, Particle.CAMPFIRE_COSY_SMOKE);
             plugin.highManager.addSmoker(event.getPlayer(), HighManager.HIGHNESS_PER_BOWL);
 
         } else if (event.getItem().isSimilar(plugin.items.vape)) {
@@ -96,7 +95,7 @@ public class TokeListener implements Listener {
             }
 
             event.getPlayer().sendMessage(Component.text("You take a hit...").color(NamedTextColor.GREEN));
-            spawnSmoke(event.getPlayer(), 0.125, 2);
+            spawnSmoke(event.getPlayer(), 0.125, 2, Particle.SMOKE);
             plugin.highManager.addSmoker(event.getPlayer(), HighManager.HIGHNESS_PER_VAPE_HIT);
 
         } else if (event.getItem().isSimilar(plugin.items.dabRig)) {
@@ -121,16 +120,16 @@ public class TokeListener implements Listener {
             }
 
             event.getPlayer().sendMessage(Component.text("You take a dab...").color(NamedTextColor.GREEN));
-            spawnSmoke(event.getPlayer(), 0.25, 4);
+            spawnSmoke(event.getPlayer(), 0.25, 4, Particle.CAMPFIRE_COSY_SMOKE);
             plugin.highManager.addSmoker(event.getPlayer(), HighManager.HIGHNESS_PER_DAB);
         }
     }
 
-    private void spawnSmoke(Player player, double radius, int amount) {
+    private void spawnSmoke(Player player, double radius, int amount, Particle particle) {
         Location location = player.getEyeLocation();
         Vector direction = location.getDirection();
         double distance = radius * 2;
-        player.getWorld().spawnParticle(Particle.CAMPFIRE_COSY_SMOKE, location.add(direction.multiply(distance)),
+        player.getWorld().spawnParticle(particle, location.add(direction.multiply(distance)),
                 amount, radius,
                 radius, radius, 0.0025);
     }
@@ -143,9 +142,6 @@ public class TokeListener implements Listener {
                     .sendActionBar(Component.text("You're so high, you can't move...?").color(NamedTextColor.WHITE));
         }
     }
-
-    // TODO: block custom items from being used in non-plugin recipes
-    // (eg. dying wool with weed, crafting a lantern with a joint)
 
     // prevent offline players from having their hightask ran
     @EventHandler

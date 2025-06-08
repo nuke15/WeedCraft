@@ -16,9 +16,9 @@ public class HighManager {
     private final Map<Player, Integer> highLevels = new ConcurrentHashMap<>();
 
     // constants
-    public static final int HIGHNESS_PER_JOINT = 10;
-    public static final int HIGHNESS_PER_VAPE_HIT = 15;
+    public static final int HIGHNESS_PER_JOINT = 15;
     public static final int HIGHNESS_PER_BOWL =  25;
+    public static final int HIGHNESS_PER_VAPE_HIT = 30;
     public static final int HIGHNESS_PER_DAB = 40;
     public static final int MAX_HIGHNESS = 100;
 
@@ -50,6 +50,9 @@ public class HighManager {
 
         player.removePotionEffect(PotionEffectType.SLOWNESS);
         player.removePotionEffect(PotionEffectType.NAUSEA);
+        player.removePotionEffect(PotionEffectType.RESISTANCE);
+        player.removePotionEffect(PotionEffectType.HUNGER);
+        
         player.activeBossBars().forEach((bar) -> {
             if (bar.name().toString().contains("Highness")) {
                 player.hideBossBar(bar);

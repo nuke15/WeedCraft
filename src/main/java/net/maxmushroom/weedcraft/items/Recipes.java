@@ -29,6 +29,8 @@ public class Recipes {
         dabRigKey = new NamespacedKey(plugin, "dab_rig_recipe");
 
         register(plugin);
+
+        plugin.getLogger().info("Plugin Namespace: " + weedKey.getNamespace());
     }
 
     public void register(WeedCraft plugin) {

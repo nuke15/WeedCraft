@@ -68,8 +68,14 @@ public class HighTask implements Runnable {
         highBar.name(name);
 
         // update effects
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, EFFECT_DURATION, (int) Math.floor(getProgress() * 3), true, false, true));
-        
+        int slownessAmplifier = (int) Math.floor(getProgress() * 3);
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, EFFECT_DURATION, slownessAmplifier, true, false, true));
+        int resistanceAmplifier = (int) Math.floor(getProgress() * 3);
+        player.addPotionEffect(new PotionEffect(PotionEffectType.RESISTANCE, EFFECT_DURATION, resistanceAmplifier, true, false, true));
+        int hungerAmplifier = (int) (Math.floor(getProgress() * 3) - 1);
+        if (hungerAmplifier >= 0) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.HUNGER, EFFECT_DURATION, hungerAmplifier, true, false, true));
+        }        
         if (getHighness() >= NAUSEA_THRESHOLD) {
             player.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, EFFECT_DURATION, 0, true, false, true));
         }
