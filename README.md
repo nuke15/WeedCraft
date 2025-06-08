@@ -2,7 +2,7 @@
 
 Paper plugin that adds a "high" mechanic, letting players craft and smoke weed.
 
-## Crafting
+## Items
 
 ### Weed
 
@@ -13,14 +13,16 @@ Can be crafted from ferns. Represented by enchanted green dye.
 
 Crafted by combining weed and paper. Represented by a torch.
 
-## Usage
-
-While holding a joint, right-click. A large puff of smoke will appear.
-
 ## Effects
 
+- **Resistance**
 - **Slowness**
-  - Increases with highness.
+- **Hunger**
+
+All increase with highness.
+
+Conditional effects:
+
 - **Nausea**
   - Appears above 50% high.
 - **Paralysis**
