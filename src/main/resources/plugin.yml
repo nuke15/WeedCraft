@@ -1,6 +1,6 @@
 name: ${project.name}
 version: ${project.version}
 main: net.maxmushroom.weedcraft.WeedCraft
-api-version: '1.21'
+api-version: ${minecraft.version}
 author: maxmushroom
 description: ${project.description}
