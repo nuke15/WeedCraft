@@ -9,7 +9,7 @@ Requires 1.21.4+
 ### Weed
 
 Can be crafted from ferns. Represented by enchanted green dye.
-- Large ferns yield 16 nugs, while small ferns give 4.
+- Large ferns yield 8 nugs, while small ferns give 4.
 
 ### Joints
 
